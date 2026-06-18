@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SMS Alerts</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+  {% include 'sidebar.html' %}
+  <div class="main">
+    <div class="header"><h2>SMS Alert Recipients</h2></div>
+    <div class="card sms-section">
+      <ul>
+        {% for number in recipients %}
+          <li>
+            📱 {{ number }}
+            <form action="{{ url_for('remove_number') }}" method="POST" style="display:inline;">
+              <input type="hidden" name="number_to_remove" value="{{ number }}">
+              <button type="submit" class="remove-btn">Remove</button>
+            </form>
+          </li>
+        {% endfor %}
+      </ul>
+      <form action="{{ url_for('add_number') }}" method="POST">
+        <input type="text" name="new_number" placeholder="Enter phone number" required>
+        <button type="submit">Add Number</button>
+      </form>
+      <p style="color: gray; font-size: 0.9em;">
+        ⚠️ Note: Only verified numbers in your Twilio account will actually receive SMS alerts.
+      </p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

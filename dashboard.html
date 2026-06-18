@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+  {% include 'sidebar.html' %}
+  <div class="main">
+    <div class="header"><h2>Welcome to Violence Detection Dashboard</h2></div>
+    <div class="card">
+      <p>Select a section from the sidebar:</p>
+      <ul>
+        <li><a href="{{ url_for('notifications') }}">View Notifications</a></li>
+        <li><a href="{{ url_for('videos') }}">View Stored Violence Videos</a></li>
+        <li><a href="{{ url_for('sms') }}">Manage SMS Recipients</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

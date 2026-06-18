@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Violence Videos</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+  {% include 'sidebar.html' %}
+  <div class="main">
+    <div class="header"><h2>Stored Violence Videos</h2></div>
+    <div class="videos">
+      {% if incidents %}
+        {% for incident in incidents %}
+          <div class="card video-card">
+            <!-- Video Player -->
+            <video id="video_{{ loop.index }}" controls width="480">
+              <source src="{{ url_for('static', filename='incident_videos/' + incident.file) }}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+
+            <!-- Incident Details -->
+            <p><b>{{ incident.status }}</b></p>
+            <p>🕒 {{ incident.time }}</p>
+            <p>📊 Violence Probability: {{ incident.violence_prob }}</p>
+            <p>👥 Crowd Level: {{ incident.crowd_level }}</p>
+
+            <!-- Violence Timestamp -->
+            {% if incident.violence_stamp %}
+              <p>⏱ Violence Timestamp: {{ incident.violence_stamp }}</p>
+              <button onclick="document.getElementById('video_{{ loop.index }}').currentTime={{ incident.violence_time }};">
+                Jump to Violence
+              </button>
+            {% endif %}
+
+            <!-- Download Button -->
+            <a href="{{ url_for('static', filename='incident_videos/' + incident.file) }}" download>
+              <button>Download</button>
+            </a>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p>No violence videos stored yet.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Violence Detection  and Crowd Flow MonitoringDashboard</title>
+
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #f4f6f9; }
+    .container { display: flex; height: 100vh; }
+
+    .sidebar {
+      width: 220px;
+      background: #1e293b;
+      color: white;
+      padding: 20px;
+    }
+
+    .sidebar h3 { text-align: center; }
+    .sidebar a {
+      display: block;
+      padding: 10px;
+      margin: 10px 0;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .sidebar a:hover { background: #334155; }
+
+    .main { flex: 1; padding: 20px; overflow-y: auto; }
+
+    .header {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .notification {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      border-left: 5px solid red;
+    }
+
+    .videos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 15px;
+    }
+
+    .video-card {
+      background: white;
+      padding: 10px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #2563eb;
+      color: white;
+      margin-top: 8px;
+    }
+
+    button:hover { background: #1d4ed8; }
+
+    .sms-section {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    .sms-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sms-section li {
+      margin: 5px 0;
+    }
+
+    .sms-section input {
+      padding: 6px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-right: 8px;
+    }
+
+    .remove-btn {
+      background: red;
+      color: white;
+      border: none;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .remove-btn:hover { background: darkred; }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h3>Admin Panel</h3>
+    <p>👤 {{ admin }}</p>
+    <a href="#notifications">Notifications</a>
+    <a href="#videos">Violence Videos</a>
+    <a href="#sms">SMS Alerts</a>
+    <a href="{{ url_for('logout') }}">Logout</a>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+
+    <div class="header">
+      <h2>Violence Alerts & Videos</h2>
+    </div>
+
+    <!-- Notifications -->
+    <h3 id="notifications">Notifications</h3>
+
+    {% if incidents %}
+      {% for incident in incidents %}
+        <div class="notification">
+          🔴 <b>{{ incident.status }}</b><br>
+          🕒 Time: {{ incident.time }}<br>
+          🎥 Video: {{ incident.file }}<br>
+          📊 Violence Probability: {{ incident.violence_prob }}<br>
+          👥 Crowd Level: {{ incident.crowd_level }}
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No alerts yet.</p>
+    {% endif %}
+
+    <!-- Videos -->
+    <h3 id="videos">Stored Violence Videos</h3>
+
+    <div class="videos">
+      {% for incident in incidents %}
+        <div class="video-card">
+          <video controls>
+            <source src="{{ url_for('static', filename='incident_videos/' + incident.file) }}" type="video/mp4">
+          </video>
+
+          <p><b>{{ incident.status }}</b></p>
+          <p>🕒 {{ incident.time }}</p>
+          <p>📊 Violence Probability: {{ incident.violence_prob }}</p>
+          <p>👥 Crowd Level: {{ incident.crowd_level }}</p>
+
+          <a href="{{ url_for('static', filename='incident_videos/' + incident.file) }}" download>
+            <button>Download</button>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- SMS Recipients Section -->
+    <div class="sms-section" id="sms">
+      <h3>SMS Alert Recipients</h3>
+      <ul>
+        {% for number in recipients %}
+          <li>
+            📱 {{ number }}
+            <form action="{{ url_for('remove_number') }}" method="POST" style="display:inline;">
+              <input type="hidden" name="number_to_remove" value="{{ number }}">
+              <button type="submit" class="remove-btn">Remove</button>
+            </form>
+          </li>
+        {% endfor %}
+      </ul>
+
+      <form action="{{ url_for('add_number') }}" method="POST">
+        <input type="text" name="new_number" placeholder="Enter phone number" required>
+        <button type="submit">Add Number</button>
+      </form>
+      <p style="color: gray; font-size: 0.9em;">
+        ⚠️ Note: Only verified numbers in your Twilio account will actually receive SMS alerts.
+      </p>
+    </div>
+
+  </div>
+</div>
+<div class="sidebar">
+
+
+</body>
+</html>
