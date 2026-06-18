@@ -172,5 +172,13 @@ nonfight_videos = load_videos('RWF-2000/train/NonFight/')
   year={2021},
   organization={IEEE}
 }
-```
+<img width="958" height="1001" alt="WhatsApp Image 2026-06-18 at 10 09 00 PM" src="https://github.com/user-attachments/assets/09681ddf-c3e3-4f1d-96d6-0a48ffacd216" />
+
+<img width="957" height="995" alt="image" src="https://github.com/user-attachments/assets/ef82fefa-c76a-4d55-a8bb-196dfa807bb8" />
+
+<img width="693" height="1005" alt="image" src="https://github.com/user-attachments/assets/5b10651e-b2b9-4431-9399-4822b72c38f1" />
+ <img width="1600" height="838" alt="image" src="https://github.com/user-attachments/assets/c4acdfec-846f-44fe-9052-d6400a70811c" />
+<img width="1600" height="838" alt="image" src="https://github.com/user-attachments/assets/30478223-d66a-4797-938c-9089ef1b5fda" />
+
+
 
