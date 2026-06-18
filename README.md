@@ -2,9 +2,8 @@
 Development of an AI based system that can automatically detect campus violence and  monitor crowd  level in real timefrom cctv footage
 
 
-# AI-Powered Smart Campus Violence Detection and Crowd Flow Monitoring System
 
-## 📌 Overview
+📌 Overview
 This project presents an intelligent surveillance framework designed to **detect violent activities** and **monitor crowd levels** in real-time using computer vision and deep learning.  
 Traditional CCTV monitoring is manual and error-prone — our system automates the process, enabling faster intervention and safer campus environments.
 
