@@ -73,26 +73,7 @@ dataset clonning
 
 ![Descripción](https://github.com/mchengny/RWF2000-Video-Database-for-Violence-Detection) <!-- Asegúrate de actualizar esta URL con una imagen representativa del dataset si tienes una. -->
 
-## Descripción
 
-**Real World Fight (RWF) 2000** es un conjunto de datos de video diseñado para el reconocimiento de peleas en videos del mundo real. Este dataset contiene videos etiquetados en dos categorías: **"Fight"** y **"Non-Fight"**, y está destinado a facilitar la investigación en la detección automática de violencia en videos de vigilancia y otros contextos de la vida real.
-
-## Detalles del Dataset
-
-- **Tamaño Total:** 12 GB (asegúrate de ajustar según tu archivo real)
-- **Número de Videos:** 2000 videos en total
-  - **Fight:** 1000 videos
-  - **Non-Fight:** 1000 videos
-- **Formato de Video:** .avi
-- **Duración del Video:** Cada video tiene una duración de aproximadamente 5 a 10 segundos.
-- **Resolución:** 640x360 píxeles
-- **Etiquetas:** Binarias (0 = Non-Fight, 1 = Fight)
-
-## Estructura del Dataset
-
-El dataset está organizado en dos conjuntos principales de datos: entrenamiento y validación, cada uno con sus subdirectorios correspondientes.
-
-```
 RWF-2000/
     ├── train/
     │   ├── Fight/
@@ -112,29 +93,9 @@ RWF-2000/
             ├── video1.avi
             ├── video2.avi
             └── ...
-```
 
-## Descarga del Dataset
 
-Puedes descargar el dataset directamente desde este repositorio de Hugging Face. Usa el siguiente comando para clonar el dataset a tu máquina local:
-
-```bash
-git lfs install
-git clone https://huggingface.co/datasets/DanJoshua/RWF-2000
-```
-
-## Uso del Dataset
-
-El dataset está destinado a facilitar la investigación y el desarrollo de modelos para la detección de violencia en videos. Se puede utilizar para tareas como:
-
-- Clasificación de videos de pelea vs. no pelea.
-- Entrenamiento de modelos de visión por computadora para la detección de actividades violentas.
-- Evaluación de algoritmos de detección de eventos violentos en videos.
-
-### Ejemplo de Uso
-
-Aquí hay un ejemplo de cómo cargar y procesar el dataset usando Python:
-
+-
 ```python
 import os
 import cv2
@@ -154,30 +115,6 @@ def load_videos(folder_path):
             videos.append(frames)
             cap.release()
     return videos
-
-# Cargar videos de entrenamiento
-fight_videos = load_videos('RWF-2000/train/Fight/')
-nonfight_videos = load_videos('RWF-2000/train/NonFight/')
-```
-
-## Cita
-
-```
-@inproceedings{cheng2021rwf,
-  title={RWF-2000: an open large scale video database for violence detection},
-  author={Cheng, Ming and Cai, Kunjing and Li, Ming},
-  booktitle={2020 25th International Conference on Pattern Recognition (ICPR)},
-  pages={4183--4190},
-  year={2021},
-  organization={IEEE}
-}
-<img width="958" height="1001" alt="WhatsApp Image 2026-06-18 at 10 09 00 PM" src="https://github.com/user-attachments/assets/09681ddf-c3e3-4f1d-96d6-0a48ffacd216" />
-
-<img width="957" height="995" alt="image" src="https://github.com/user-attachments/assets/ef82fefa-c76a-4d55-a8bb-196dfa807bb8" />
-
-<img width="693" height="1005" alt="image" src="https://github.com/user-attachments/assets/5b10651e-b2b9-4431-9399-4822b72c38f1" />
- <img width="1600" height="838" alt="image" src="https://github.com/user-attachments/assets/c4acdfec-846f-44fe-9052-d6400a70811c" />
-<img width="1600" height="838" alt="image" src="https://github.com/user-attachments/assets/30478223-d66a-4797-938c-9089ef1b5fda" />
 
 
 
