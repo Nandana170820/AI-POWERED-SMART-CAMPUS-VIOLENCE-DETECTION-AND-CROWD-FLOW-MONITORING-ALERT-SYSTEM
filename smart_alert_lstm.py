@@ -33,9 +33,9 @@ transform = transforms.Compose([
 # =========================
 def send_sms_alert():
     try:
-        account_sid = "ACe6485570fdfcfeaa495196507fa3902a"
-        auth_token =  "4affc10835c7248fc0c2b9b44da0f124"
-        from_number =  "+19046905314"
+        account_sid = 
+        auth_token =  
+        from_number =  
 
         recipients_file = os.path.join(BASE_DIR, "dashboard", "recipients.json")
         with open(recipients_file, "r") as f:
